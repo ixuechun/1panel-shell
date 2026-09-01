@@ -1,3 +1,3 @@
 # 1panel-shell
 
-1panel面板脚本
+1panel面板脚本集合
