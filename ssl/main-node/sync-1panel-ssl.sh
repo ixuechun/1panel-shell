@@ -150,7 +150,7 @@ CERTIFICATE_CONTENT=$(cat "$FULLCHAIN_PEM" | awk '{printf "%s\\n", $0}' | sed 's
 # 在这里填写你的所有站点，使用 run_with_retry 包裹调用
 # 格式： run_with_retry 最大重试次数 间隔秒数 upload_one_site 面板地址 API密钥 ssl_id 描述
 
-run_with_retry 3 2 upload_one_site "https://mson.bbroot.com" "u0105Ttx1bFpQHZcMEtIOTtKzaRKtuXM" "5" "aliyun"
+run_with_retry 3 2 upload_one_site "https://mson.bxxt.com" "u0105...XM" "5" "aliyun"
 
 # run_with_retry 3 2 upload_one_site "https://xxx" "secret" "22" "hk‑site"
 # 需要新增站点，直接复制上面一行修改参数
