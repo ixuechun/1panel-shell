@@ -104,6 +104,7 @@ EOF
     local UPLOAD_RESPONSE curl_exit_code RESP_BODY HTTP_CODE
     set +e
     UPLOAD_RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "${PANEL_URL}${API_SSL_UPLOAD}" \
+        --max-time 15 \
         -H "Content-Type: application/json" \
         -H "1Panel-Token: $TOKEN_MD5" \
         -H "1Panel-Timestamp: $TIMESTAMP" \
