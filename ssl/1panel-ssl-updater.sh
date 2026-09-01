@@ -28,7 +28,7 @@ EOF
 
 # 校验下载结果
 if [[ ! -f "${LOC_FULLCHAIN}" || ! -f "${LOC_PRIVKEY}" ]]; then
-    echo "$(date) ERROR：从阿里云下载证书失败"
+    echo "$(date) ERROR: 从阿里云下载证书失败"
     exit 1
 fi
 
@@ -45,7 +45,7 @@ for site_dir in "${SITE_ROOT}"/*; do
     # 从站点文件夹名称提取域名，匹配后缀 xuechun.vip
     site_name=$(basename "${site_dir}")
     if [[ "${site_name}" == *"${SUFFIX_MATCH}" ]]; then
-        echo "$(date) 更新站点：${site_name}"
+        echo "$(date) 更新站点: ${site_name}"
         cp -f "${LOC_FULLCHAIN}" "${ssl_dir}/fullchain.pem"
         cp -f "${LOC_PRIVKEY}" "${ssl_dir}/privkey.pem"
     fi
@@ -54,12 +54,12 @@ done
 # 3.获取运行中的openresty容器，你的容器名称为 openresty
 CONTAINER=$(docker ps --filter "status=running" --filter "name=^openresty$" --format '{{.Names}}')
 if [[ -z "${CONTAINER}" ]];then
-    echo "$(date) WARN：未找到运行的openresty容器，证书文件已替换，请手动重载服务"
+    echo "$(date) WARN: 未找到运行的openresty容器，证书文件已替换，请手动重载服务"
 else
     echo "$(date) 检测到openresty容器: ${CONTAINER}"
     # 先校验配置语法，有错直接退出，不重载（防止网站瘫痪）
     if ! docker exec "${CONTAINER}" openresty -t; then
-        echo "$(date) ERROR：openresty配置语法错误，放弃重载"
+        echo "$(date) ERROR: openresty配置语法错误，放弃重载"
         rm -f "${LOC_FULLCHAIN}" "${LOC_PRIVKEY}"
         exit 1
     fi
